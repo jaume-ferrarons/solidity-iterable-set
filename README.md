@@ -2,6 +2,13 @@
 
 This is a `Solidity` contract that offers a **Set** structure for `uint256` **allowing** at the same time to **efficiently list all the elements** in it.
 
+## Address
+
+You can find this contact in the following networks:
+* Main: [0x2C292e7151543014638e45a4E4903B974959c412](https://etherscan.io/address/0x2c292e7151543014638e45a4e4903b974959c412)
+* Ropsten: [0x00bE89BAFC475ECBDbf0A9F4b516AE263e927ad4](https://ropsten.etherscan.io/address/0x00bE89BAFC475ECBDbf0A9F4b516AE263e927ad4).
+
+
 ## Available methods
 
 ### Add
