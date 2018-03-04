@@ -5,8 +5,8 @@ This is a `Solidity` contract that offers a **Set** structure for `uint256` **al
 ## Address
 
 You can find this contact in the following networks:
-* Main: [0x2C292e7151543014638e45a4E4903B974959c412](https://etherscan.io/address/0x2c292e7151543014638e45a4e4903b974959c412)
-* Ropsten: [0x00bE89BAFC475ECBDbf0A9F4b516AE263e927ad4](https://ropsten.etherscan.io/address/0x00bE89BAFC475ECBDbf0A9F4b516AE263e927ad4).
+* Main: [0x7680cd6af65e5f4ca877c11d00f1cfb7f1a2ca9b](https://etherscan.io/address/0x7680cd6af65e5f4ca877c11d00f1cfb7f1a2ca9b).
+* Ropsten: [0x95d9036eb852de376597cf09550aed61b9ef6ec6](https://ropsten.etherscan.io/address/0x95d9036eb852de376597cf09550aed61b9ef6ec6).
 
 
 ## Available methods
@@ -16,6 +16,37 @@ Adds the provided value to the set.
 ```js
 function add(uint256 value) public
 ```
+### Contains
+Returns true if and only if the contains the value.
+```js
+function contains(uint256 value) public view returns (bool)
+```
+
+### First
+Value of the first iterable element in the set.
+```js
+uint256 public first
+```
+
+### Last
+Value of the last iterable element in the set.
+```js
+uint256 public last
+```
+
+### Next
+Returns the next value in the set.
+Fails if the provided value does not belong to the set or it has not next (it is the last one).
+```js
+function next(uint256 value) public view returns (uint256) 
+```
+
+### Previous
+Returns the previous value in the set.
+Fails if the provided value does not belong to the set or it has not previous (it is the first one)
+```js
+function next(uint256 value) public view returns (uint256) 
+```
 
 ### Remove
 Removes the provided value from the set if present.
@@ -23,10 +54,10 @@ Removes the provided value from the set if present.
 function remove(uint256 value) public
 ```
 
-### Contains
-Returns true if and only if the contains the value.
+### Size
+Number of elements in the set.
 ```js
-function contains(uint256 value) public view returns (bool)
+uint256 public size
 ```
 
 ### Values
@@ -37,15 +68,10 @@ Don't call it from a smart contract code. The gas requirement of this function m
 function values() public view returns (uint256[])
 ```
 
-### Size
-Is the number of elements in the set.
-```js
-uint256 public size
-```
 
 ## Internals
 
-It has been implemented using the `mapping` type from `Solidity` and linking the elements in a double linked list.
+It has been implemented using the `mapping` type from `Solidity` and linking the elements as in a double linked list.
 
 
 ## Testing

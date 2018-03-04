@@ -16,8 +16,8 @@ contract IterableSet {
     // Mapping of values to the corresponding elements
     mapping(uint => Element) elements;
 
-    uint256 first;  // Id of the first element
-    uint256 last;   // Id of the last element
+    uint256 public first;  // Id of the first element
+    uint256 public last;   // Id of the last element
     uint256 public size;    // Size of the set
 
     // Adds an provided value to the Set
@@ -76,5 +76,21 @@ contract IterableSet {
             position = elements[position.next];
         }
         return result;
+    }
+
+    // Returns the next value in the set.
+    // Fails if the provided value does not belong to the set or it has not next (it is the last one)
+    function next(uint256 value) public view returns (uint256) {
+        require(contains(value));
+        require(value != last);
+        return elements[value].next;
+    }
+
+    // Returns the previous value in the set.
+    // Fails if the provided value does not belong to the set or it has not previous (it is the first one)
+    function previous(uint256 value) public view returns (uint256) {
+        require(contains(value));
+        require(value != first);
+        return elements[value].previous;
     }
 }
