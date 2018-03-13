@@ -68,11 +68,54 @@ Don't call it from a smart contract code. The gas requirement of this function m
 function values() public view returns (uint256[])
 ```
 
-
 ## Internals
 
 It has been implemented using the `mapping` type from `Solidity` and linking the elements as in a double linked list.
 
+## Usage
+
+This contract provides a data structure that allows adding, removing and obtaing keys from it. In order to iterate the elements in it from your contract you need to access them one by one.
+Assuming that we have an instance of the `IterableSet` cotract in the variable **set**, we can access and obtain all elements in the following form:
+
+```js
+IterableSet set = new IterableSet();
+
+/**
+ * .... some operations on the set
+ */
+
+uint256[] memory elements = new uint256[](set.size());
+uint256 position = set.first();
+uint256 i;
+for (i = 0; i < size; i++) {
+    elements[i] = position;
+    position = set.next(position);
+}
+```
+
+In JS we can similarly do:
+```js
+const size = (await set.size()).toNumber();
+const first = (await set.first()).toNumber();
+const last = (await set.last()).toNumber();
+const elements = [];
+if (size > 0) {
+    let value = first;
+    while (value != last) {
+        elements.push(value);
+        value = (await set.next(value)).toNumber();
+    }
+    elements.push(value);
+}
+```
+
+or more simply use:
+
+```js
+const elements = await set.values()
+```
+
+**NOTE**: that the later solution `elements` will contain *BigNumber* objects instead of JS number.
 
 ## Testing
 
